@@ -5,7 +5,6 @@
  * @property {string} description
  * @property {string} date
  * @property {string} location
- * @property {number} cohortId
  */
 
 // HTML setup
