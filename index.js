@@ -15,3 +15,17 @@ const api = BASE_URL + COHORT_CODE + APP;
 
 // state variables
 const events = [];
+
+// render function
+function render() {
+    const $app = document.querySelector("#app") 
+    $app.innerHTML = `
+    <header>Party Planner</header>
+    <UpcomingList></UpcomingList>
+    <SelectedParty></SelectedParty>
+    `
+    $app.querySelector("UpcomingList").replaceWith("")
+    $app.querySelector("SelectedParty").replaceWith("")
+}
+
+render()
