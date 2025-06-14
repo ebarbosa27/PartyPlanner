@@ -14,3 +14,4 @@ const APP = "/events";
 const api = BASE_URL + COHORT_CODE + APP;
 
 // state variables
+const events = [];
