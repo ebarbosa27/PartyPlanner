@@ -15,26 +15,34 @@ const api = BASE_URL + COHORT_CODE + APP;
 
 // state variables
 const events = [];
+let selectedEvent = undefined;
 
 // component functions
-function upcomingComponent() {
-    const mainElem = document.createAttribute("ul")
-    // add list items under 
+function upcomingPartyComponent() {
+  const containerElem = document.createAttribute("ul");
+  // add list items under upcoming list
+  return containerElem;
+}
+
+function selectedPartyComponent() {
+  const containerElem = document.createAttribute("div");
+  // update selected party to clicked party
+  return containerElem;
 }
 
 // render function
 function render() {
-    const $app = document.querySelector("#app") 
-    $app.innerHTML = `
+  const $app = document.querySelector("#app");
+  $app.innerHTML = `
     <h1>Party Planner</h1>
     <div>
         <h2>Upcoming Party</h2>
         <UpcomingList></UpcomingList>
     </div>
     <SelectedParty></SelectedParty>
-    `
-    $app.querySelector("UpcomingList").replaceWith("")
-    $app.querySelector("SelectedParty").replaceWith("")
+    `;
+  $app.querySelector("UpcomingList").replaceWith(upcomingPartyComponent());
+  $app.querySelector("SelectedParty").replaceWith(selectedPartyComponent());
 }
 
-render()
+render();
