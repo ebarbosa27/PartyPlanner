@@ -53,6 +53,11 @@ async function getParty(eventId) {
 function upcomingPartyComponent() {
   const containerElem = document.createElement("ul");
   // add list items under upcoming list
+  events.forEach((party) => {
+    const listElem = document.createElement("li");
+    listElem.textContent = party.name;
+    containerElem.appendChild(listElem);
+  });
   return containerElem;
 }
 
@@ -71,7 +76,10 @@ function render() {
         <h2>Upcoming Party</h2>
         <UpcomingList></UpcomingList>
     </div>
-    <SelectedParty></SelectedParty>
+    <div>
+        <h2>Party Details</h2>
+        <SelectedParty></SelectedParty>
+    </div>
     `;
   $app.querySelector("UpcomingList").replaceWith(upcomingPartyComponent());
   $app.querySelector("SelectedParty").replaceWith(selectedPartyComponent());
