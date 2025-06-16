@@ -16,12 +16,21 @@ const api = BASE_URL + COHORT_CODE + APP;
 // state variables
 const events = [];
 
+// component functions
+function upcomingComponent() {
+    const mainElem = document.createAttribute("ul")
+    // add list items under 
+}
+
 // render function
 function render() {
     const $app = document.querySelector("#app") 
     $app.innerHTML = `
-    <header>Party Planner</header>
-    <UpcomingList></UpcomingList>
+    <h1>Party Planner</h1>
+    <div>
+        <h2>Upcoming Party</h2>
+        <UpcomingList></UpcomingList>
+    </div>
     <SelectedParty></SelectedParty>
     `
     $app.querySelector("UpcomingList").replaceWith("")
