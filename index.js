@@ -49,7 +49,7 @@ async function getParty(eventId) {
     });
 }
 
-// component functions
+// ================ component functions ================
 function upcomingPartyComponent() {
   const containerElem = document.createElement("ul");
   // add list items under upcoming list
@@ -62,24 +62,36 @@ function upcomingPartyComponent() {
 }
 
 function selectedPartyComponent() {
-  const containerElem = document.createElement("div");
+  if (!selectedEvent) {
+    const pElem = document.createElement("p");
+    pElem.textContent = "Select a party to see more details.";
+    return pElem;
+  }
+
+  const containerElem = document.createElement("section");
   // update selected party to clicked party
+  containerElem.textContent = `
+  <h3>${selectedEvent.name} #${selectedEvent.id}</h3>
+  <p>${selectedEvent.date}</p>
+  <p>${selectedEvent.location}</p>
+  <p>${selectedEvent.description}</p>
+  `;
   return containerElem;
 }
 
-// render function
+// ================ render function ================
 function render() {
   const $app = document.querySelector("#app");
   $app.innerHTML = `
     <h1>Party Planner</h1>
-    <div>
+    <section>
         <h2>Upcoming Party</h2>
         <UpcomingList></UpcomingList>
-    </div>
-    <div>
+    </section>
+    <section>
         <h2>Party Details</h2>
         <SelectedParty></SelectedParty>
-    </div>
+    </section>
     `;
   $app.querySelector("UpcomingList").replaceWith(upcomingPartyComponent());
   $app.querySelector("SelectedParty").replaceWith(selectedPartyComponent());
