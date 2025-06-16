@@ -11,20 +11,19 @@
 const BASE_URL = "https://fsa-crud-2aa9294fe819.herokuapp.com/api";
 const COHORT_CODE = "/2504-FTB-ET-WEB-PT";
 const APP = "/events";
-const api = BASE_URL + COHORT_CODE + APP;
+const API = BASE_URL + COHORT_CODE + APP;
 
 // state variables
 let events = [];
 let selectedEvent = undefined;
 
-// calls apit to update events list
+// calls api to update events list
 async function getAllParties() {
-  await fetch(api)
+  await fetch(API)
     .then(async (res) => {
       if (!res.ok) {
         throw new Error("Issue with api call.");
       }
-
       const resData = (await res.json()).data;
       events = resData;
     })
@@ -35,15 +34,30 @@ async function getAllParties() {
   render();
 }
 
+// call api to retrieve data from one event
+async function getParty(eventId) {
+  await fetch(API + `/${eventId}`)
+    .then(async (res) => {
+      if (!res.ok) {
+        throw new Error("Issue with api call.");
+      }
+      const resData = (await res.json).data;
+      selectedEvent = resData;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
+
 // component functions
 function upcomingPartyComponent() {
-  const containerElem = document.createAttribute("ul");
+  const containerElem = document.createElement("ul");
   // add list items under upcoming list
   return containerElem;
 }
 
 function selectedPartyComponent() {
-  const containerElem = document.createAttribute("div");
+  const containerElem = document.createElement("div");
   // update selected party to clicked party
   return containerElem;
 }
@@ -59,8 +73,8 @@ function render() {
     </div>
     <SelectedParty></SelectedParty>
     `;
-  // $app.querySelector("UpcomingList").replaceWith(upcomingPartyComponent());
-  // $app.querySelector("SelectedParty").replaceWith(selectedPartyComponent());
+  $app.querySelector("UpcomingList").replaceWith(upcomingPartyComponent());
+  $app.querySelector("SelectedParty").replaceWith(selectedPartyComponent());
 }
 
 // Initialize events list and call render function after
