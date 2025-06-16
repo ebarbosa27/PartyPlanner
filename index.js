@@ -3,7 +3,7 @@
  * @property {number} id
  * @property {string} name
  * @property {string} description
- * @property {string} date
+ * @property {ISO date string} date
  * @property {string} location
  */
 
@@ -56,6 +56,12 @@ function upcomingPartyComponent() {
   events.forEach((party) => {
     const listElem = document.createElement("li");
     listElem.textContent = party.name;
+
+    listElem.addEventListener("click", () => {
+      selectedEvent = party;
+      render();
+    });
+
     containerElem.appendChild(listElem);
   });
   return containerElem;
@@ -70,9 +76,9 @@ function selectedPartyComponent() {
 
   const containerElem = document.createElement("section");
   // update selected party to clicked party
-  containerElem.textContent = `
+  containerElem.innerHTML = `
   <h3>${selectedEvent.name} #${selectedEvent.id}</h3>
-  <p>${selectedEvent.date}</p>
+  <p>${new Date(selectedEvent.date).toLocaleDateString()}</p>
   <p>${selectedEvent.location}</p>
   <p>${selectedEvent.description}</p>
   `;

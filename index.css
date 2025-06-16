@@ -24,6 +24,10 @@ main {
   margin: 1rem 0;
 }
 
+#upcomingParties ul li {
+  cursor: pointer;
+}
+
 #selectedParty {
   flex: 1;
 }
