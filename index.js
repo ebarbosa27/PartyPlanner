@@ -14,8 +14,26 @@ const APP = "/events";
 const api = BASE_URL + COHORT_CODE + APP;
 
 // state variables
-const events = [];
+let events = [];
 let selectedEvent = undefined;
+
+// calls apit to update events list
+async function getAllParties() {
+  await fetch(api)
+    .then(async (res) => {
+      if (!res.ok) {
+        throw new Error("Issue with api call.");
+      }
+
+      const resData = (await res.json()).data;
+      events = resData;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+
+  render();
+}
 
 // component functions
 function upcomingPartyComponent() {
@@ -41,8 +59,14 @@ function render() {
     </div>
     <SelectedParty></SelectedParty>
     `;
-  $app.querySelector("UpcomingList").replaceWith(upcomingPartyComponent());
-  $app.querySelector("SelectedParty").replaceWith(selectedPartyComponent());
+  // $app.querySelector("UpcomingList").replaceWith(upcomingPartyComponent());
+  // $app.querySelector("SelectedParty").replaceWith(selectedPartyComponent());
 }
 
-render();
+// Initialize events list and call render function after
+async function init() {
+  await getAllParties();
+  render();
+}
+
+init();
