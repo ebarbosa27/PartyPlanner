@@ -1,0 +1,29 @@
+h1 {
+  text-align: center;
+}
+
+main {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+}
+
+#upcomingParties {
+  flex: 1;
+}
+
+#upcomingParties ul {
+  list-style: none;
+  font-size: 18px;
+  padding: 0;
+}
+
+#upcomingParties ul li {
+  border: 1px black solid;
+  padding: 0.6rem;
+  margin: 1rem 0;
+}
+
+#selectedParty {
+  flex: 1;
+}

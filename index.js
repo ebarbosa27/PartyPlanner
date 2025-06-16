@@ -84,14 +84,16 @@ function render() {
   const $app = document.querySelector("#app");
   $app.innerHTML = `
     <h1>Party Planner</h1>
-    <section>
-        <h2>Upcoming Party</h2>
+    <main>
+    <section id="upcomingParties">
+        <h2>Upcoming Parties</h2>
         <UpcomingList></UpcomingList>
     </section>
-    <section>
+    <section id="selectedParty">
         <h2>Party Details</h2>
         <SelectedParty></SelectedParty>
     </section>
+    </main>
     `;
   $app.querySelector("UpcomingList").replaceWith(upcomingPartyComponent());
   $app.querySelector("SelectedParty").replaceWith(selectedPartyComponent());
